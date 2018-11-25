@@ -1,0 +1,46 @@
+[
+  {
+   "name": "KDI Food Plaza",
+   "location": {"lat": 26.2628481, "lng": 82.0765489}
+  },
+  {
+    "name": "Tunday Kababi",
+    "location": {"lat": 26.2629122, "lng": 82.0766408}
+  },
+  {
+    "name": "V Mart",
+    "location": {"lat": 26.2648688, "lng": 82.0724023}
+  },
+  {
+    "name": "Ansh Stationery",
+    "location": {"lat": 26.2881508, "lng": 82.0822456}
+  },
+  {
+    "name": "MADRASI CAFE",
+    "location": {"lat": 26.2850929, "lng": 82.0810245}
+  },
+  {
+    "name": "Kwality Canteen",
+    "location": {"lat": 26.2839414 , "lng": 82.0775595 }
+  },
+  {
+    "name": "Maurya general store",
+    "location": {"lat": 26.2834625 , "lng": 82.0781356 }
+  },
+  {
+    "name": "SATYA SAI PARAG MILK BAR",
+    "location": {"lat": 26.2838092 , "lng": 82.0780747 }
+  },
+  {
+    "name": "SPORTS ROOM",
+    "location": {"lat": 26.2640172 , "lng": 82.0772915 }
+  },
+  {
+    "name": "Baba ka Dhaba",
+    "location": {"lat": 26.284507 , "lng": 82.078012 }
+  },
+  {
+    "name": "Pandey P.C.O",
+    "location": {"lat": 26.284948 , "lng": 82.0782621 }
+  }
+]

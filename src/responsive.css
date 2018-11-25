@@ -1,0 +1,29 @@
+/* iPhone 5 SE & screens less than 350px */
+@media screen and (max-width: 320px) {
+  .App-title h1 {
+    font-size: 1.2em
+  }
+
+  .toggle-wrapper {
+    margin: 15px;
+  }
+
+  .menu-wrap {
+      background-color: rgba(51, 51, 51, .7);
+  }
+}
+
+/* iPhone 6 7 8 Plus and screens max-width 680px */
+@media screen and (max-width: 680px) {
+  .App-title h1 {
+    font-size: 1.5em
+  }
+
+  .toggle-wrapper {
+    margin: 15px;
+  }
+
+  .menu-wrap {
+      background-color: rgba(51, 51, 51, .7);
+  }
+}
