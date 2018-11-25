@@ -1,15 +1,15 @@
 [
   {
    "name": "KDI Food Plaza",
-   "location": {"lat": 26.2628481, "lng": 82.0765489}
+   "location": {"lat": 26.263186, "lng": 82.076672}
   },
   {
     "name": "Tunday Kababi",
-    "location": {"lat": 26.2629122, "lng": 82.0766408}
+    "location": {"lat": 26.262953, "lng": 82.076727}
   },
   {
     "name": "V Mart",
-    "location": {"lat": 26.2648688, "lng": 82.0724023}
+    "location": {"lat": 26.264905, "lng": 82.072394}
   },
   {
     "name": "Ansh Stationery",
@@ -21,7 +21,7 @@
   },
   {
     "name": "Kwality Canteen",
-    "location": {"lat": 26.2839414 , "lng": 82.0775595 }
+    "location": {"lat": 26.285199, "lng": 82.079470 }
   },
   {
     "name": "Maurya general store",

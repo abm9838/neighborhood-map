@@ -8,7 +8,7 @@ class LoadingNoDisplay extends Component {
   }
   // create timeout when component mounts
   componentDidMount = () => {
-    let timeout = window.setTimeout(this.errMessage, 100);
+    let timeout = window.setTimeout(this.errMessage, 120);
     this.setState({timeout})
   }
   // clearing timeout if timeout is still running
@@ -26,10 +26,10 @@ class LoadingNoDisplay extends Component {
        {/* if show is true, show network error message, otherwise show map loading */}
         {this.state.show ? (
           <div>
-            <h1>Error Map didn't load</h1>
-            <p>There may be something wrong with the network. Check your network connection and try again.</p>
+            <h1>Error!, Map didn't load</h1>
+            <p>Check your network connection and try again.</p>
           </div>
-        ) : (<div><h1>Map Loading..</h1></div>)
+        ) : (<div><h1>Map is Loading...  Please wait</h1></div>)
 
       } </div>
     )

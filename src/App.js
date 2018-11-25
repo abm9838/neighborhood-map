@@ -23,6 +23,7 @@ class App extends Component {
     });
     // dispay message if failed to load api
     // check your key
+    //as
     window.gm_authFailure=()=>{
        alert('GoogleMaps API failed to load, please check API key and reload');
     };

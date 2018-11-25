@@ -2,16 +2,12 @@ import React, { Component } from 'react'
 import { GoogleApiWrapper, Map, InfoWindow } from 'google-maps-react'
 import LoadingNoDisplay from './LoadingNoDisplay'
 
-// tutorial from https://scotch.io/tutorials/react-apps-with-the-google-maps-api-and-google-maps-react
-// and theinfinitemonkey @ github
-
-const FSCLIENT = '3U5WCEV2GRJ2PRRUCPCPVY32FV3P4XUEJ23HYRA4Z1QP43MW'
-const FSSECRET = 'KQAWSE0XOSX1QJ1KTN4SF5BANKAZEQ3QDNEAEM5AQKNWB0OB'
-const FSVERSION = '20181114'
+const FOURSQUARECLIENT = 'LWJSQMJCR3RH1IK41JSGK4014KVYLKOBNTOHTU4CYJFK2CZJ'
+const FOURSQUARESECRETID = 'IBQ1UXGQZQENZUZD22KRJ00LK3GSHXU52JOTTJWI54DMML43'
+const FOURSQUAREVERSION = '20181114'
 
 class MapView extends Component {
   state = {
-    /* so no location markers applies to map during load */
     map: null,
     markers: [],
     markerProps: [],
@@ -21,23 +17,22 @@ class MapView extends Component {
   }
 
   componentDidMount = () => {
-  //  console.log(this.props.locations)
+   console.log(this.props.locations)
   }
 
   componentWillReceiveProps = (props) => {
-    // if the number of locations doesnt match, so update the markers
     if (this.state.markers.length !== props.locations.length) {
       this.onClose();
       this.setMarkers(props.locations);
       this.setState({currentMarker: null});
       return;
     }
-    // if item is not the same as the active marker, close the info window
+    // if item is not the same, close the info window
     if (!props.indexKey || (this.state.currentMarker &&
       (this.state.markers[props.indexKey] !== this.state.currentMarker))) {
         this.onClose();
       }
-    // make sure there's an indexKey
+    // make sure, if there's an indexKey
     if (props.indexKey === null || typeof(props.indexKey) === "undefined") {
       return;
     };
@@ -45,7 +40,7 @@ class MapView extends Component {
     this.onMarkerClick(this.state.markerProps[props.indexKey], this.state.markers[props.indexKey]);
    }
 
-  // sets map state and markers for location
+  // markers for location
   mapLoaded = (props, map) => {
     this.setState({map})
     this.setMarkers(this.props.locations)
@@ -61,20 +56,15 @@ class MapView extends Component {
   onMarkerClick = (props, marker, e) => {
     // opens markers and closes when new markers are opened
     this.onClose();
-    // create request obj and fetch FS data for photos
-    // let position = this.props.locations.location
-    let url = `https://api.foursquare.com/v2/venues/search?client_id=${FSCLIENT}&client_secret=${FSSECRET}&v=${FSVERSION}&radius=100&ll=${props.position.lat},${props.position.lng}&llAcc=100`
+    let url = `https://api.foursquare.com/v2/venues/search?client_id=${FOURSQUARECLIENT}&client_secret=${FOURSQUARESECRETID}&v=${FOURSQUAREVERSION}&radius=100&ll=${props.position.lat},${props.position.lng}&llAcc=100`
     let headers = new Headers();
 		let request = new Request(url, {
 			method: 'GET',
 			headers
     });
-      // *** Needs work -- read FS DOC
       let currentMarkerProps
-      // fetch request and take response/data
       fetch(request).then(response => response.json()).then(result => {
         // compare data to locations.name in json and pass into shops
-        // make shops into new foursquare data
         let shops = this.getVenueInfo(props, result);
         currentMarkerProps = {
           ...props,
@@ -82,7 +72,7 @@ class MapView extends Component {
         };
         // setting state for data and get images for each shop
         if (currentMarkerProps.foursquare) {
-          let url = `https://api.foursquare.com/v2/venues/${shops[0].id}/photos?client_id=${FSCLIENT}&client_secret=${FSSECRET}&v=${FSVERSION}`
+          let url = `https://api.foursquare.com/v2/venues/${shops[0].id}/photos?client_id=${FOURSQUARECLIENT}&client_secret=${FOURSQUARESECRETID}&v=${FOURSQUAREVERSION}`
           fetch(url).then(response => response.json()).then(result => {
             currentMarkerProps = {
               ...currentMarkerProps,
@@ -108,7 +98,7 @@ class MapView extends Component {
         }
       }).catch(err => {
         // handle API fetch errors
-        alert('API not retrieved, please check API key and reload')
+        alert('API not retrieved, check your API key')
       })
   }
 
@@ -143,7 +133,6 @@ class MapView extends Component {
       // add new props to markerProps
       markerProps.push(mProps);
 
-      // make new markers object with values from objects in location (in json)
       let marker = new this.props.google.maps.Marker({
         position: location.location,
         map: this.state.map,
@@ -171,13 +160,9 @@ class MapView extends Component {
       width: '100%',
       height: '100%'
     }
-    // set currentMarkerProps to variable to avoid repetition
-    // ******* amProps is null - either from keys or animation
     let cmProps = this.state.currentMarkerProps;
-  //  console.log(amProps)
+    //console.log(cmProps)
     return (
-      // components from google-maps-react pkg
-      // entire app accessible from aria-lable and role!
       <Map
         google={this.props.google}
         onReady={this.mapLoaded}
@@ -186,15 +171,6 @@ class MapView extends Component {
         style={styles}
         initialCenter={center}
       >
-      {/* iterate through locations to create markers
-      {this.props.locations.map((location, i) => (
-              <Marker
-                key={i}
-                onClick={this.onMarkerClick}
-                title={location.name}
-                position={location.location}
-              />
-			))} */}
         <InfoWindow
         marker={this.state.currentMarker}
         visible={this.state.showingInfoWindow}
@@ -203,7 +179,9 @@ class MapView extends Component {
           <div>
             {/* compare data from json to FS and use json as fallback */}
             <h4>{cmProps && cmProps.name}</h4>
-            {/* amProps && amProps.url ? (<a href={amProps.url}>site</a>) : '' */}
+            {cmProps && cmProps.url ? (<a href={cmProps.url}>site</a>) : '' 
+              
+          }
             {cmProps && cmProps.images ? (<div>
               <img
                 alt={cmProps.name + " food picture"}
